@@ -1,7 +1,7 @@
 %define       name    owncloud
 %define       version 1.0
-%define       release %mkrel 0.5
-%define       git     45b4e462
+%define       release %mkrel 0.6
+%define       git     7adbbfe
 
 Summary:      Open personal cloud
 Name:         %{name}
