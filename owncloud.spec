@@ -1,13 +1,12 @@
 %define       name    owncloud
 %define       version 1.1
-%define       release %mkrel 0.2
-%define       git     6642d4af
+%define       release %mkrel 1
 
 Summary:      Open personal cloud
 Name:         %{name}
 Version:      %{version}
 Release:      %{release}
-Source0:      %{name}-%{version}.%git.tar.bz2
+Source0:      http://owncloud.org/releases/%{name}-%{version}.tar.bz2
 License:      AGPLv3
 Group:        Monitoring
 Url:          http://owncloud.org/
