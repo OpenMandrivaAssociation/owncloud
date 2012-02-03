@@ -1,6 +1,6 @@
 %define       name    owncloud
-%define       version 1.1
-%define       release %mkrel 1
+%define       version 3.0.0
+%define       release 1
 
 Summary:      Open personal cloud
 Name:         %{name}
@@ -10,7 +10,6 @@ Source0:      http://owncloud.org/releases/%{name}-%{version}.tar.bz2
 License:      AGPLv3
 Group:        Monitoring
 Url:          http://owncloud.org/
-BuildRoot:    %{_tmppath}/%{name}-buildroot
 BuildRequires: apache-base
 Requires:     php >= 4.1
 Requires:     apache-base
@@ -34,8 +33,6 @@ with other people.
 %setup -q -n %name 
 
 %install
-rm -rf $RPM_BUILD_ROOT
-
 mkdir -p %buildroot%_datadir/owncloud
 (
 cd %buildroot%_datadir
@@ -53,7 +50,3 @@ Alias /%name %_datadir/%name
 </Directory>
 
 EOF
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
