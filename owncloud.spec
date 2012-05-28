@@ -1,5 +1,5 @@
 %define       name    owncloud
-%define       version 3.0.0
+%define       version 4.0.0
 %define       release 1
 
 Summary:      Open personal cloud
