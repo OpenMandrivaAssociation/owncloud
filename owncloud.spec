@@ -1,5 +1,5 @@
 %define       name    owncloud
-%define       version 4.0.0
+%define       version 4.0.2
 %define       release 1
 
 Summary:      Open personal cloud
@@ -31,6 +31,9 @@ with other people.
 
 %prep
 %setup -q -n %name 
+
+%build
+echo "Hello, i'm a build section"
 
 %install
 mkdir -p %buildroot%_datadir/owncloud
