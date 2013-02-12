@@ -1,2 +1,4 @@
+removed_sources:
+  owncloud-4.0.7.tar.bz2: 99b9c5b6b26b75a6ddac610ed47c342e80897c9a
 sources:
-  "owncloud-4.0.7.tar.bz2": 99b9c5b6b26b75a6ddac610ed47c342e80897c9a
+  owncloud-4.0.11.tar.bz2: a57d6f3510bf45daa0ff4c350010042751d8616e

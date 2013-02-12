@@ -1,11 +1,7 @@
-%define       name    owncloud
-%define       version 4.0.7
-%define       release 1
-
 Summary:      Open personal cloud
-Name:         %{name}
-Version:      %{version}
-Release:      %{release}
+Name:         owncloud
+Version:      4.0.11
+Release:      1
 Source0:      http://owncloud.org/releases/%{name}-%{version}.tar.bz2
 License:      AGPLv3
 Group:        Monitoring
@@ -48,8 +44,7 @@ cat > %buildroot%_sysconfdir/httpd/conf/webapps.d/%{name}.conf <<EOF
 # %{name} configuration
 Alias /%name %_datadir/%name
 <Directory %_datadir/%name>
-    Order allow,deny
-    Allow from all
+    Require all denied
 </Directory>
 
 EOF
