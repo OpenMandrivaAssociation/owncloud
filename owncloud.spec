@@ -1,6 +1,6 @@
 Summary:      Open personal cloud
 Name:         owncloud
-Version:      4.0.11
+Version:      7.0.2
 Release:      1
 Source0:      http://owncloud.org/releases/%{name}-%{version}.tar.bz2
 License:      AGPLv3
