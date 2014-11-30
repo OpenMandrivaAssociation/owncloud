@@ -1,21 +1,30 @@
-Summary:      Open personal cloud
+Summary:      The ownCloud Server - Private file sync and share server
 Name:         owncloud
 Version:      7.0.3
 Release:      1
 Source0:      http://owncloud.org/releases/%{name}-%{version}.tar.bz2
-License:      AGPLv3
+License:      AGPL-3.0
 Group:        Monitoring
 Url:          http://owncloud.org/
 BuildRequires: apache-base
 Requires:     php >= 4.1
 Requires:     apache-base
 Requires:     apache-mod_php
+Requires:     php-mysql
+Requires:     mysql
+Requires:     php-gd
+Requires:     php-iconv
+Requires:     php-mbstring
+Requires:     php-pdo_mysql
 BuildArch:    noarch
 
 %description
-A personal cloud server which runs on you personal server 
-and enables accessing your data from everywhere and sharing 
-with other people.
+ownCloud Server provides you a private file sync and share
+cloud. Host this server to easily sync business or private documents
+across all your devices, and share those documents with other users of
+your ownCloud server on their devices.
+
+ownCloud - Your Cloud, Your Data, Your Way!  www.owncloud.org
 
 %files
 %defattr(-,root,root)
@@ -29,7 +38,6 @@ with other people.
 %setup -q -n %name 
 
 %build
-echo "Hello, i'm a build section"
 
 %install
 mkdir -p %buildroot%_datadir/owncloud
@@ -44,13 +52,20 @@ cat > %buildroot%_sysconfdir/httpd/conf/webapps.d/%{name}.conf <<EOF
 # %{name} configuration
 Alias /%name %_datadir/%name
 <Directory %_datadir/%name>
-    Require all denied
+    DirectoryIndex index.html index.php
+    AllowOverride All
+    Options FollowSymlinks
+    Require all granted
 </Directory>
 
 EOF
 
 
 %changelog
+* Sun Nov 30 2014 Luthfi Emka <panahbiru@gmail.com> 7.0.2-1
++ Revision: 905788
+- version update 7.0.2
+
 * Fri Jun 15 2012 Alexander Khrukin <akhrukin@mandriva.org> 4.0.2-1
 + Revision: 805788
 - version update 4.0.2
