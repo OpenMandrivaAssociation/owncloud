@@ -1,6 +1,6 @@
 Summary:      The ownCloud Server - Private file sync and share server
 Name:         owncloud
-Version:      7.0.3
+Version:      7.0.4
 Release:      1
 Source0:      http://owncloud.org/releases/%{name}-%{version}.tar.bz2
 License:      AGPL-3.0
