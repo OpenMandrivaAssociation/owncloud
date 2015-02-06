@@ -1,7 +1,7 @@
 Summary:      Open personal cloud
 Name:         owncloud
 Version:      4.0.11
-Release:      1
+Release:      2
 Source0:      http://owncloud.org/releases/%{name}-%{version}.tar.bz2
 License:      AGPLv3
 Group:        Monitoring
