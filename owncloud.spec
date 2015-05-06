@@ -8,7 +8,7 @@
 
 Summary:	Open personal cloud
 Name:		owncloud
-Version:	8.0.2
+Version:	8.0.3
 Release:	1
 Source0:	https://download.owncloud.org/community/%{name}-%{version}.tar.bz2
 Source1:	apache.example.conf
