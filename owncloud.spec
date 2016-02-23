@@ -1,6 +1,6 @@
 Summary:      The ownCloud Server - Private file sync and share server
 Name:         owncloud
-Version:      7.0.4
+Version:      8.2.2
 Release:      1
 Source0:      http://owncloud.org/releases/%{name}-%{version}.tar.bz2
 License:      AGPL-3.0
@@ -16,6 +16,9 @@ Requires:     php-gd
 Requires:     php-iconv
 Requires:     php-mbstring
 Requires:     php-pdo_mysql
+Requires:	php-pdo_sqlite
+Requires:	php-fileinfo
+Requires:	php-zip
 BuildArch:    noarch
 
 %description
