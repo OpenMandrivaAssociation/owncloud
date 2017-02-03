@@ -8,7 +8,7 @@
 
 Summary:	Open personal cloud
 Name:		owncloud
-Version:	8.2.2
+Version:	9.1.4
 Release:	1
 Source0:	https://download.owncloud.org/community/%{name}-%{version}.tar.bz2
 Source1:	apache.example.conf
@@ -37,11 +37,9 @@ Requires:	config(php-curl)
 Requires:	config(php-iconv)
 Requires:	config(php-sqlite3)
 Requires:	config(php-pdo_sqlite)
-Requires:	config(php-apacheaccessor)
 Requires:	config(php-pgsql)
 Requires:	config(php-ldap)
 Requires:	config(php-intl)
-Requires:	config(php-apc)
 #  drop cacheing because of conflicts,Sflo
 # Suggests:     config(php-xcache)
 Requires:	config(php-mcrypt)
