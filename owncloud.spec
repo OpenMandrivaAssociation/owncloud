@@ -9,7 +9,7 @@
 Summary:	Open personal cloud
 Name:		owncloud
 Version:	10.0.0
-Release:	1
+Release:	2
 Source0:	https://download.owncloud.org/community/%{name}-%{version}.tar.bz2
 Source1:	apache.example.conf
 Source100:	%{name}.rpmlintrc
@@ -61,8 +61,8 @@ with other people.
 %doc COPYING AUTHORS 
 %attr(-,apache,apache) %{_datadir}/%{name}
 # Not sure if this is useful...
-%config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/apache.example.conf
-%config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/config.sample.php
+%config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
+%config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/%{name}.config.sample.php
 %{_sysconfdir}/pki/%{name}/*.pem
 #--------------------------------------------------------------------
 
@@ -87,10 +87,10 @@ find %{buildroot} -size 0 -delete
 
 # move config to /etc
 mkdir -p %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d
-mv %{buildroot}%{_datadir}/%{name}/config/config.sample.php %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d
+mv %{buildroot}%{_datadir}/%{name}/config/config.sample.php %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d/%{name}.config.sample.php
 
 # install apache config file
-install -m 644 %{SOURCE1}  %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d
+install -m 644 %{SOURCE1}  %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
 
 
 # fix some attr
