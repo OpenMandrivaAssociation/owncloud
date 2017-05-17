@@ -8,7 +8,7 @@
 
 Summary:	Open personal cloud
 Name:		owncloud
-Version:	9.1.4
+Version:	10.0.0
 Release:	1
 Source0:	https://download.owncloud.org/community/%{name}-%{version}.tar.bz2
 Source1:	apache.example.conf
@@ -58,10 +58,9 @@ and enables accessing your data from everywhere and sharing
 with other people.
 
 %files
-%doc COPYING-AGPL AUTHORS 
+%doc COPYING AUTHORS 
 %attr(-,apache,apache) %{_datadir}/%{name}
 # Not sure if this is useful...
-%config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/.htaccess
 %config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/apache.example.conf
 %config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/config.sample.php
 %{_sysconfdir}/pki/%{name}/*.pem
@@ -89,8 +88,6 @@ find %{buildroot} -size 0 -delete
 # move config to /etc
 mkdir -p %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d
 mv %{buildroot}%{_datadir}/%{name}/config/config.sample.php %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d
-# Not sure if this is useful...
-mv %{buildroot}%{_datadir}/%{name}/config/.htaccess %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d
 
 # install apache config file
 install -m 644 %{SOURCE1}  %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d
