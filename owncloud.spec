@@ -42,10 +42,8 @@ Requires:	config(php-ldap)
 Requires:	config(php-intl)
 #  drop cacheing because of conflicts,Sflo
 # Suggests:     config(php-xcache)
-# Deprecated in new php releases
+# Deprecated in new php releases. (penguin)
 #Requires:	config(php-mcrypt)
-#Use libsodium instead php-mcrypt 
-Requires: libsodium23
 Requires:	mariadb
 Requires:	samba-client
 
