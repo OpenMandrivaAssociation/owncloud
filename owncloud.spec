@@ -8,7 +8,7 @@
 
 Summary:	Open personal cloud
 Name:		owncloud
-Version:	10.0.7
+Version:	10.0.9
 Release:	1
 Source0:	https://download.owncloud.org/community/%{name}-%{version}.tar.bz2
 Source1:	apache.example.conf
@@ -42,7 +42,8 @@ Requires:	config(php-ldap)
 Requires:	config(php-intl)
 #  drop cacheing because of conflicts,Sflo
 # Suggests:     config(php-xcache)
-Requires:	config(php-mcrypt)
+# Deprecated in new php releases. (penguin)
+#Requires:	config(php-mcrypt)
 Requires:	mariadb
 Requires:	samba-client
 
