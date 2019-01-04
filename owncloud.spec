@@ -9,7 +9,7 @@
 Summary:	Open personal cloud
 Name:		owncloud
 Version:	10.0.10
-Release:	2
+Release:	3
 Source0:	https://download.owncloud.org/community/%{name}-%{version}.tar.bz2
 Source1:	apache.example.conf
 Source100:	%{name}.rpmlintrc
