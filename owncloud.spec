@@ -8,7 +8,7 @@
 
 Summary:	Open personal cloud
 Name:		owncloud
-Version:	10.4.1
+Version:	10.5.0
 Release:	1
 Source0:	https://download.owncloud.org/community/%{name}-%{version}.tar.bz2
 Source1:	apache.example.conf
