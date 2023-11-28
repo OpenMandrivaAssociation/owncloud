@@ -63,7 +63,7 @@ with other people.
 
 %files
 %doc COPYING AUTHORS 
-%attr(-,apache,apache) %{_datadir}/%{name}
+%attr(-,www,www) %{_datadir}/%{name}
 # Not sure if this is useful...
 %config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
 %config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/%{name}.config.sample.php
