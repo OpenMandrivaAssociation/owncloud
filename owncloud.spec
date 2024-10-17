@@ -19,7 +19,7 @@ BuildRequires:	tar
 
 License:	AGPLv3
 Group:		Monitoring
-Url:		http://owncloud.org/
+Url:		https://owncloud.org/
 
 # apache
 Requires:	config(apache-base)
