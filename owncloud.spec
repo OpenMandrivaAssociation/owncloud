@@ -1,26 +1,23 @@
 # based my build for stella. symbianflo
 
 %if %{_use_internal_dependency_generator}
-%define __noautoreq /usr/bin/php
+%global __noautoreq /usr/bin/php
 %else
-%define _requires_exceptions /usr/bin/php
+%global _requires_exceptions /usr/bin/php
 %endif
 
 Summary:	Open personal cloud
 Name:		owncloud
-Version:	10.16.0
+Version:	10.16.1
 Release:	1
-Source0:  https://download.owncloud.com/server/stable/owncloud-%{version}.tar.bz2
-#Source0:	https://download.owncloud.org/community/%{name}-%{version}.tar.bz2
+License:	AGPLv3
+Group:	Archiving/Backup
+Url:		https://owncloud.org/
+Source0:  https://download.owncloud.com/server/stable/%{name}-%{version}.tar.bz2
+#Source0:	https://download.owncloud.org/community/%%{name}-%%{version}.tar.bz2
 Source1:	apache.example.conf
 Source100:	%{name}.rpmlintrc
-
 BuildRequires:	tar
-
-License:	AGPLv3
-Group:		Monitoring
-Url:		https://owncloud.org/
-
 # apache
 Requires:	config(apache-base)
 Requires:	config(apache-mod_php)
@@ -31,7 +28,7 @@ Requires:	perl(Data::Dumper)
 Requires:	perl(File::Basename)
 Requires:	perl(File::Path)
 Requires:	perl(Locale::PO)
-#php
+# php
 Requires:	php-cli >= 4.1
 Requires:	config(php-zip)
 Requires:	config(php-mbstring)
@@ -43,23 +40,21 @@ Requires:	config(php-pdo_sqlite)
 Requires:	config(php-pgsql)
 Requires:	config(php-ldap)
 Requires:	config(php-intl)
-#  drop cacheing because of conflicts,Sflo
+#  Drop cacheing because of conflicts,Sflo
 # Suggests:     config(php-xcache)
 # Deprecated in new php releases. (penguin)
 #Requires:	config(php-mcrypt)
-Requires:	mariadb
-Requires:	samba-client
-
-# files preview
+# Files preview
 Requires:	ffmpeg
 Suggests:	libreoffice
-
+# Other
+Requires:	mariadb
+Requires:	samba-client
 BuildArch:	noarch
 
 %description
-A personal cloud server which runs on you personal server 
-and enables accessing your data from everywhere and sharing 
-with other people.
+A personal cloud server which runs on you personal server and enables
+accessing your data from everywhere and sharing with other people.
 
 %files
 %doc COPYING AUTHORS 
@@ -68,45 +63,62 @@ with other people.
 %config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
 %config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/%{name}.config.sample.php
 %{_sysconfdir}/pki/%{name}/*.pem
-#--------------------------------------------------------------------
-
-
-%prep
-%setup -qn %{name}
-sed -i "s|'appstoreenabled'.*|'appstoreenabled' => false,|" config/config.sample.php
-
-%build
-# Since they said is mine , then this is a must. Symbianflo
-echo "MRB aint no shit"
-
-%install
-mkdir -p %{buildroot}%{_datadir}/owncloud
-(
-cd %{buildroot}%{_datadir}
-tar xjf %{SOURCE0}
-)
-
-# clean zero lenght
-find %{buildroot} -size 0 -delete
-
-# move config to /etc
-mkdir -p %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d
-mv %{buildroot}%{_datadir}/%{name}/config/config.sample.php %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d/%{name}.config.sample.php
-
-# install apache config file
-install -m 644 %{SOURCE1}  %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
-
-
-# fix some attr
-find %{buildroot}%{_datadir}/owncloud -type f -exec chmod 0644 {} \;
-find %{buildroot}%{_datadir}/owncloud -type d -exec chmod 0755 {} \;
-
-# pem cert.
-mkdir -p %{buildroot}%{_sysconfdir}/pki/%{name}
-find . %{buildroot} -name "*.pem" -exec mv --target-directory=%{buildroot}%{_sysconfdir}/pki/%{name} {} \;
 
 %post
 ln -s %{_sysconfdir}/httpd/conf/webapps.d %{_datadir}/%{name}/config
 
 %postun
 rm -Rf %{_datadir}/%{name}/config
+
+#--------------------------------------------------------------------
+
+%prep
+%autosetup -p1 -n %{name}
+sed -i "s|'appstoreenabled'.*|'appstoreenabled' => false,|" config/config.sample.php
+
+
+%build
+# Nothing to  do
+# Since they said is mine , then this is a must. Symbianflo
+echo "MRB aint no shit"
+
+
+%install
+mkdir -p %{buildroot}%{_datadir}/%{name}
+pushd %{buildroot}%{_datadir}
+	tar xjf %{SOURCE0}
+popd
+
+# Clean zero lenght files
+find %{buildroot} -size 0 -delete
+
+# Move config files to /etc
+mkdir -p %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d
+mv %{buildroot}%{_datadir}/%{name}/config/config.sample.php %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d/%{name}.config.sample.php
+
+# Install apache config file
+install -m 644 %{SOURCE1}  %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
+
+# Fix some attr
+find %{buildroot}%{_datadir}/owncloud -type f -exec chmod 0644 {} \;
+find %{buildroot}%{_datadir}/owncloud -type d -exec chmod 0755 {} \;
+chmod +x %{buildroot}%{_datadir}/owncloud/apps/files_mediaviewer/l10n/l10n.pl
+chmod +x %{buildroot}%{_datadir}/owncloud/core/vendor/bootstrap/grunt/change-version.js
+chmod +x %{buildroot}%{_datadir}/owncloud/core/vendor/bootstrap/grunt/generate-sri.js
+chmod +x %{buildroot}%{_datadir}/owncloud/core/vendor/clipboard/.husky/pre-commit
+chmod +x %{buildroot}%{_datadir}/owncloud/core/vendor/jquery/build/release-notes.js
+chmod +x %{buildroot}%{_datadir}/owncloud/lib/composer/swiftmailer/swiftmailer/lib/swiftmailer_generate_mimes_config.php
+chmod +x %{buildroot}%{_datadir}/owncloud/occ
+chmod +x %{buildroot}%{_datadir}/owncloud/updater/application.php
+chmod +x %{buildroot}%{_datadir}/owncloud/
+
+# Remove duplicate files
+rm -f %{buildroot}%{_datadir}/owncloud/AUTHORS
+rm -f %{buildroot}%{_datadir}/owncloud/COPYING
+rm -f %{buildroot}%{_datadir}/owncloud/apps/market/LICENSE
+rm -f %{buildroot}%{_datadir}/usr/share/owncloud/apps/files_mediaviewer/LICENSE
+rm -f %{buildroot}%{_datadir}/owncloud/apps/encryption/LICENSE
+
+# Install pem cert
+mkdir -p %{buildroot}%{_sysconfdir}/pki/%{name}
+find . %{buildroot} -name "*.pem" -exec mv --target-directory=%{buildroot}%{_sysconfdir}/pki/%{name} {} \;
