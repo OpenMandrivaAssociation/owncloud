@@ -8,7 +8,7 @@
 
 Summary:	Open personal cloud
 Name:		owncloud
-Version:	10.16.1
+Version:	10.16.2
 Release:	1
 License:	AGPLv3
 Group:	Archiving/Backup
