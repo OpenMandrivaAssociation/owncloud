@@ -8,7 +8,7 @@
 
 Summary:	Open personal cloud
 Name:		owncloud
-Version:	10.16.2
+Version:	10.16.3
 Release:	1
 License:	AGPLv3
 Group:	Archiving/Backup
@@ -73,7 +73,7 @@ rm -Rf %{_datadir}/%{name}/config
 #--------------------------------------------------------------------
 
 %prep
-%autosetup -p1 -n %{name}
+%autosetup -p1 -n owncloud
 sed -i "s|'appstoreenabled'.*|'appstoreenabled' => false,|" config/config.sample.php
 
 
